@@ -1,5 +1,5 @@
 # Intro
-soko Number game , where it build with this algorithms to solving :
+soko Number game , where it built with this algorithms to solving :
 - DFS (Depth First Search)
 - BFS (Branch First Search)
 - UCS (Dijkstra)
