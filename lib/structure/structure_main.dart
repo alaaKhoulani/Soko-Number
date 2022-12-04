@@ -13,12 +13,14 @@ class Structure {
   List<Pair> goals;
   List<Pair> numbers;
   Structure? perant;
+  int depth;
 
   Structure(
       {required this.rows,
       required this.columns,
       required this.board,
       required this.perant,
+      required this.depth,
       required this.numbers,
       required this.goals});
 
@@ -128,16 +130,15 @@ class Structure {
     List<bool> moves = this.checkMoves();
     List<Structure> newStates = [];
     //Up
-
     if (moves[0]) {
       newStates.add(moveUp());
-    }
+    } //down
     if (moves[1]) {
       newStates.add(moveDown());
-    }
+    } //right
     if (moves[3]) {
       newStates.add(moveRight());
-    }
+    } //left
     if (moves[2]) {
       newStates.add(moveLeft());
     }
@@ -272,6 +273,7 @@ class Structure {
         columns: columns,
         board: boardd,
         perant: this,
+        depth: this.depth + 1,
         goals: this.goals,
         numbers: num);
   }
@@ -312,6 +314,24 @@ class Structure {
       }
     }
     return true;
+  }
+
+  int calculateHeuristic() {
+    int heuristic = 0;
+
+    for (var i in numbers) {
+      for (var j in goals) {
+        if (i.value == j.value) {
+          print("value = ${i.value} ,  first = ${i.first}  ,  second= ${j.second}");
+          print("value = ${j.value} ,  first = ${j.first}  ,  second= ${j.second}");
+          heuristic +=
+              ((i.first - j.first).abs() + (i.second - j.second).abs()).abs();
+
+        }
+      }
+    }
+
+    return heuristic;
   }
 }
 

@@ -6,6 +6,7 @@ import 'package:home_work_1/structure/structure_main.dart';
 Structure level1 = new Structure(
     rows: 3,
     columns: 7,
+    depth: 0,
     board: [
       ["W", "W", "W", "W", "W", "W", "W"],
       ["W", "1", "E", "E", "E", "E", "W"],
@@ -17,6 +18,7 @@ Structure level1 = new Structure(
 Structure level2 = Structure(
     rows: 7,
     columns: 5,
+    depth: 0,
     board: [
       ["W", "W", "W", "W", "W"],
       ["W", "1", "W", "2", "W"],
@@ -38,6 +40,7 @@ Structure level2 = Structure(
 Structure level3 = Structure(
     rows: 5,
     columns: 5,
+    depth: 0,
     board: [
       ["W", "W", "W", "W", "W"],
       ["W", "1", "E", "E", "W"],
@@ -57,6 +60,7 @@ Structure level3 = Structure(
 Structure level4 = Structure(
     rows: 5,
     columns: 7,
+    depth: 0,
     board: [
       ["W", "W", "W", "W", "W", "W", "W"],
       ["W", "1", "W", "2", "W", "3", "W"],
@@ -78,6 +82,7 @@ Structure level4 = Structure(
 Structure level5 = Structure(
     rows: 6,
     columns: 6,
+    depth: 0,
     board: [
       ["W", "W", "W", "W", "W", "W"],
       ["W", "1", "W", "W", "W", "W"],
@@ -102,6 +107,7 @@ Structure level5 = Structure(
 Structure level6 = Structure(
     rows: 5,
     columns: 6,
+    depth: 0,
     board: [
       ["W", "W", "W", "W", "W", "W"],
       ["W", "E", "E", "2", "W", "W"],

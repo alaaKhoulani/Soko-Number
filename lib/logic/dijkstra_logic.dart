@@ -9,19 +9,25 @@ class Dijkstra {
   static List<Structure> path = [];
   PriorityQueue<CostPair> pQueue =
       PriorityQueue((CostPair cPair1, CostPair cPair2) {
-    return cPair2.cost.compareTo(cPair1.cost) + 1;
+    return cPair2.cost.compareTo(cPair1.cost) + 2;
   });
 
   static HashSet visited = HashSet<Structure>();
   static HashMap<Structure, int> costMap = HashMap<Structure, int>();
 
-  List<Structure> dijkstra(Structure structure) {
+  reset() {
     pQueue.clear();
     visited.clear();
     path.clear();
     costMap.clear();
+  }
+
+  List<Structure> dijkstra(Structure structure) {
+    reset();
 
     CostPair solution = dijkstra_algo(structure, 0);
+    if (!solution.node.isFinal()) return [];
+
     Structure result = solution.node;
     while (result.perant != null) {
       path.add(result);
@@ -31,62 +37,52 @@ class Dijkstra {
   }
 
   CostPair dijkstra_algo(Structure structure, int cnt) {
+    reset();
     List<CostPair> listt = [];
     pQueue.add(CostPair(cost: 0, node: structure));
+    costMap.addAll({structure: 0});
     late CostPair finalNode = CostPair(cost: 0, node: structure);
+
     while (pQueue.isNotEmpty) {
-      // if (cnt == 1) break;
-      // print(cnt);
-      cnt++;
-
       CostPair currentNode = pQueue.first;
-
-      // print(currentNode.cost);
-      // print(currentNode.node.board);
-      // print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
       pQueue.removeFirst();
       int previousCost = getFromMap(currentNode.node) ?? 1000000000;
       if (previousCost < currentNode.cost) {
         continue;
       }
       if (currentNode.node.isFinal()) {
-        print("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
         listt.add(currentNode);
+        // print("FFFFFFFFFFFFFFFFFFFFFF");
         finalNode = currentNode;
         // return finalNode;
       }
-      // print(costMap.length);
-      // print("${currentNode.cost} + ${currentNode.node.board}");
 
       List<Structure> nodes = currentNode.node.getNextState();
       for (var element in nodes) {
         int previousChildCost = getFromMap(element) ?? 1000000000;
         int currentChildCost = currentNode.cost + 1;
-        if (currentChildCost < previousChildCost) {
+        // print(element.isFinal());
+        if (currentChildCost < previousChildCost ) {
           add(CostPair(cost: currentChildCost, node: element));
         }
       }
-      // print(costMap.length);
     }
-    print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-    print(listt.length);
-    print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-    listt.forEach((element) {
-      int yy = 0;
-      Structure result = element.node;
-      while (result.perant != null) {
-        yy++;
-        // path.add(result);
-        result = result.perant!;
-      }
-      print(yy);
-    });
 
+    // for (var element in listt) {
+    //   int cnt = 0;
+    //   Structure? resultNode = element.node;
+    //   while (resultNode != null) {
+    //     cnt++;
+    //     resultNode = resultNode.perant;
+    //   }
+    //   // print(cnt);
+    // }
     return finalNode;
   }
 
   add(CostPair costPair) {
     bool ok = false;
+    // print("size pq before= ${pQueue.length}");
     costMap.forEach((key, value) {
       if (key.isEqual(costPair.node.board)) {
         //update cost in map
@@ -104,13 +100,13 @@ class Dijkstra {
       }
     });
     if (costPair.node.isFinal() && ok) {
-      print('ppppppppppppppppppppppppppppppppppppp');
       pQueue.add(costPair);
     }
     if (!ok) {
       pQueue.add(costPair);
       costMap.addAll({costPair.node: costPair.cost});
     }
+    // print("size pq after= ${pQueue.length}");
   }
 
   getFromMap(Structure structure) {
@@ -130,3 +126,4 @@ class CostPair {
   Structure node;
   CostPair({required this.cost, required this.node});
 }
+

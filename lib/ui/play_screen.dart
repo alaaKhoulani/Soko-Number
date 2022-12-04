@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:home_work_1/constants/colors.dart';
 import 'package:home_work_1/constants/levels.dart';
 import 'package:home_work_1/structure/structure_main.dart';
+import 'package:home_work_1/ui/a_star_screen.dart';
 import 'package:home_work_1/ui/bfs_screen.dart';
 import 'package:home_work_1/ui/dfs_screen.dart';
 import 'package:home_work_1/ui/dijkstra_screen.dart';
@@ -86,6 +87,7 @@ class _PlayingScreenState extends State<PlayingScreen> {
                   // onTap: () {},
                 ),
                 DropdownMenuItem(value: "Dijkstra", child: Text("Dijkstra")),
+                DropdownMenuItem(value: "A*", child: Text("A*")),
               ],
               onChanged: (value) {
                 if (value == "BFS") {
@@ -114,6 +116,17 @@ class _PlayingScreenState extends State<PlayingScreen> {
                     context,
                     MaterialPageRoute<void>(
                       builder: (BuildContext context) => DijkstraScreen(
+                        currentLevel: widget.currentLevel,
+                        level_ind: i,
+                      ),
+                    ),
+                  );
+                }
+                 else if (value == "A*") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => AStarScreen(
                         currentLevel: widget.currentLevel,
                         level_ind: i,
                       ),
