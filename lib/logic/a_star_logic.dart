@@ -9,12 +9,13 @@ class AStar {
   static HashSet visited = HashSet<Structure>();
   PriorityQueue<Triple> pQueue =
       PriorityQueue((Triple triple1, Triple triple2) {
-    // int temp =(triple2.cost + triple2.heuristic)
-    //     .compareTo(triple1.cost + triple1.heuristic);
-    // if (temp == 1) {
+
+    int temp =(triple2.cost + triple2.heuristic)
+        .compareTo(triple1.cost + triple1.heuristic);
+    if (temp == 1) {
     return 2 + triple2.heuristic.compareTo(triple1.heuristic);
-    // }
-    // return 2 + temp;
+    }
+    return 2 + temp;
   });
   static HashMap<Structure, int> costMap = HashMap<Structure, int>();
 
@@ -36,12 +37,14 @@ class AStar {
   }
 
   Triple a_star_algo(Structure structure) {
-    Triple parentNode = Triple(
+    Triple parentNode = Triple  (
         cost: structure.depth,
         heuristic: structure.calculateHeuristic(),
         node: structure);
+        
     pQueue.add(parentNode);
     costMap.addAll({structure: parentNode.cost + parentNode.heuristic});
+
     late Triple finalNode = parentNode;
 
     while (pQueue.isNotEmpty) {

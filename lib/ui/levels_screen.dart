@@ -15,25 +15,25 @@ class _LevelsScreenState extends State<LevelsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   elevation: 0,
-      //   backgroundColor: Colors.grey,
-      //   title: Text(
-      //       "Soko Number",
-      //       style: TextStyle(color: Colors.purple, fontSize: 30,fontWeight: FontWeight.bold),
-      //     ),
-      // ),
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.purple,
+        title: Text(
+            "Soko Number",
+            style: TextStyle(color: Colors.white, fontSize: 30,fontWeight: FontWeight.bold),
+          ),
+      ),
       backgroundColor: Colors.grey,
       body: SafeArea(
           child: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 50,),
-          Text(
-            "Soko Number",
-            style: TextStyle(color: Colors.purple, fontSize: 30,fontWeight: FontWeight.bold),
-          ),
+          // Text(
+          //   "Soko Number",
+          //   style: TextStyle(color: Colors.purple, fontSize: 30,fontWeight: FontWeight.bold),
+          // ),
           SizedBox(
             height: 100,
           ),

@@ -5,9 +5,9 @@ import 'package:home_work_1/ui/levels_screen.dart';
 import 'package:home_work_1/ui/play_screen.dart';
 
 void main() {
-  
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       debugShowCheckedModeBanner: false,
       // home: DFSScreen(),
       home: LevelsScreen(),

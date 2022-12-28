@@ -46,10 +46,12 @@ class Dijkstra {
     while (pQueue.isNotEmpty) {
       CostPair currentNode = pQueue.first;
       pQueue.removeFirst();
+      
       int previousCost = getFromMap(currentNode.node) ?? 1000000000;
       if (previousCost < currentNode.cost) {
         continue;
       }
+      
       if (currentNode.node.isFinal()) {
         listt.add(currentNode);
         // print("FFFFFFFFFFFFFFFFFFFFFF");
